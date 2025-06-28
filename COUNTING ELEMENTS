@@ -1,0 +1,16 @@
+#include <algorithm> // for upper_bound
+
+class Solution {
+  public:
+    vector<int> countLessEq(vector<int>& a, vector<int>& b) {
+        sort(b.begin(), b.end());  // Must be sorted for upper_bound
+
+        vector<int> c;
+        for (int i = 0; i < a.size(); i++) {
+            // upper_bound returns the iterator to the first element > a[i]
+            int count = upper_bound(b.begin(), b.end(), a[i]) - b.begin();
+            c.push_back(count);
+        }
+        return c;
+    }
+};
